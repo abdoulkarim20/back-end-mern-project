@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
+const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema(
   {
     pseudo: {
@@ -31,4 +32,11 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+/*cryptage du password avant de l'enregistrer dans la base de donnees*/
+userSchema.pre('save', async function (next) {
+  const salt = await bcrypt.genSalt();
+  this.password = await bcrypt.hash(this.password, salt);
+  next(); /*siginfie que c'est fini on passe au suivant*/
+});
+/*Fin extrait code permettant de hasher le mot de passe*/
 module.exports = mongoose.model('users', userSchema);
