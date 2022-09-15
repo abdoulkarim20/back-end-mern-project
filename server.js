@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 
 /*Routes*/
-app.use('/api/user',userRoutes);
+app.use('/api/users',userRoutes);
 
 
 
