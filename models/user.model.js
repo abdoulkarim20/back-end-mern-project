@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
     },
     biographie: {
       type: String,
-      max: 1024,
+      maxLength: 1024,
     },
   },
   {
