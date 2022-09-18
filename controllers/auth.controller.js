@@ -1,6 +1,6 @@
 const UserModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
-const { signUpErrors } = require('../utils/errors.utils');
+const { signUpErrors, signInErros } = require('../utils/errors.utils');
 
 /*Generation du token par id user*/
 const maxAge = 20 * 60 * 1000; /*La duree du token*/
@@ -17,7 +17,7 @@ module.exports.signUp = async (req, res) => {
     const user = await UserModel.create({ pseudo, email, password });
     res.status(200).json({ user: user._id });
   } catch (error) {
-    res.status(400).send(signUpErrors(error));
+    res.status(400).send({ error: signUpErrors(error) });
   }
 };
 
@@ -30,7 +30,7 @@ module.exports.signIn = async (req, res) => {
     res.cookie('jwt', token, { httpOnly: true, maxAge });
     res.status(200).json({ user: user._id });
   } catch (error) {
-    res.status(400).json(`Login ou mot de passe inncorrect`);
+    res.status(400).send({ error: signInErros(error) });
   }
 }
 /*La fonction permettant de se deconnecter*/
