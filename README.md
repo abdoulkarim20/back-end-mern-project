@@ -10,4 +10,4 @@ Ce projet est une mise en pratique sur les differentes notions et quelques conce
 ### Securite jsonwebtoken
 - Pour l'intergation de la securite nous avons utiliser le module jsonwebtoken.
 ### bcrypt
-- Pour assurer la securiter des mots de passe de nos utilisateurs nous avons utiliser le module bcrypt pour crypter les mot de passe nos utilisateurs
+- Pour assurer la securiter des mots de passe de nos utilisateurs nous avons utiliser le module bcrypt pour crypter les mot de passe de nos utilisateurs
