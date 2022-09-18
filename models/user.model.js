@@ -6,8 +6,8 @@ const userSchema = new mongoose.Schema(
     pseudo: {
       type: String,
       required: true,
-      minLength: 3,
-      maxLength: 50,
+      minlength: 3,
+      maxlength: 50,
       unique: true,
       trim: true,
     },
@@ -21,12 +21,12 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      minLength: 6,
-      maxLength: 1024,
+      minlength: 6,
+      maxlength: 1024,
     },
     biographie: {
       type: String,
-      maxLength: 1024,
+      maxlength: 1024,
     },
   },
   {
