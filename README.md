@@ -1,2 +1,2 @@
 # back-end-mern-project
-here you must provide your project's description.
+Ce projet est une mise en pratique sur les differentes notions et quelques concept que nous avons eut a apprendre lors de notre auto formation en nodejs.
