@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+      unique: true,
       required: true,
       validator: [isEmail],
       lowercase: true,
@@ -39,4 +40,17 @@ userSchema.pre('save', async function (next) {
   next(); /*siginfie que c'est fini on passe au suivant*/
 });
 /*Fin extrait code permettant de hasher le mot de passe*/
+
+/*Decripter le mot de passe afin que user puisse se connecter avec son mot de passe format normal*/
+userSchema.statics.login = async function (email, password) {
+  const user = await this.findOne({ email });
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password);
+    if (auth) {
+      return user;
+    }
+    throw Error('Incorrect password');
+  }
+  throw Error('Incorrect email');
+}
 module.exports = mongoose.model('users', userSchema);
