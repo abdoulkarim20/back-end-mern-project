@@ -1,4 +1,6 @@
 # back-end-mern-project
+![image](https://user-images.githubusercontent.com/85187164/190933698-7abf5f23-dc05-4516-ae18-1048b4ac69f2.png)
+
 Ce projet est une mise en pratique sur les differentes notions et quelques concept que nous avons eut a apprendre lors de notre auto formation en nodejs express.
 ## Au cours de ce projet nous avons eut travailler avec les modules suivants:
 #### nodemon
@@ -12,4 +14,3 @@ Ce projet est une mise en pratique sur les differentes notions et quelques conce
 ## Bases de donnees
 #### Mongodb
 - Pour enregistrer les informations de nos utilisteurs.
-![image](https://user-images.githubusercontent.com/85187164/190933562-d280d29f-ecc3-4237-b8c4-762f5e49a014.png)
