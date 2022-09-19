@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/85187164/190933698-7abf5f23-dc05-4516-ae18-1048b4ac69f2.png)
 
-Ce projet est une mise en pratique sur les differentes notions et quelques concept que nous avons eut a apprendre lors de notre auto formation en nodejs express.
+Ce projet est une mise en pratique sur les differentes notions et quelques concept que nous avons eu a apprendre lors de notre auto formation en nodejs express.
 ## Au cours de ce projet nous avons eu a travailler avec les modules suivants:
 #### nodemon
 - Pour la configuration du serveur et permettre a celui de s'auto actualiser.
@@ -22,7 +22,7 @@ Ce projet est une mise en pratique sur les differentes notions et quelques conce
 - 3 Creer un fichier dans le dossier config en le nommant .env
 - 3.1 Une fois que vous avez creer le fichier .env veuillez mettre ces lignes de codes ci-dessous: 
 - PORT=3000
-- DB_USER_PASSWORD='username:password'
+- DB_USER_PASSWORD='your database username:your database passord'
 - TOKEN_SECRET= votre phrase de cle secret
 
 
