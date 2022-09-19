@@ -21,8 +21,8 @@ Ce projet est une mise en pratique sur les differentes notions et quelques conce
 - 2 Se mettre dans la racine du projet et tapper la commande suivante: npm install 
 - 3 Creer un fichier dans le dossier config en le nommant .env
 - 3.1 Une fois que vous avez creer le fichier .env veuillez mettre ces lignes de codes ci-dessous: 
-PORT=3000
-DB_USER_PASSWORD='jabbar:jabbar'
-TOKEN_SECRET= votre phrase de cle secret
+- PORT=3000
+- DB_USER_PASSWORD='username:password'
+- TOKEN_SECRET= votre phrase de cle secret
 
 
