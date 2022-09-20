@@ -1,6 +1,7 @@
 /*Importation module*/
 const express = require('express');
 const userRoutes = require('./routes/user.routes');
+const postRoutes = require('./routes/post.routes');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 require('dotenv').config({
@@ -22,7 +23,9 @@ app.get('/jwtid', requiredAuth, (req, res) => {
 })
 
 /*Routes*/
-app.use('/api/users', userRoutes);
+const api = '/api/v1'
+app.use(`${api}/users`, userRoutes);
+app.use(`${api}/posts`, postRoutes)
 
 /*--------------------------------------------------*/
 /*Server*/
