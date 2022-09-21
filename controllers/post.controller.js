@@ -86,7 +86,7 @@ module.exports.getDetailPost = async (req, res, next) => {
             .then((docs) => {
                 return res.status(200).json({ docs });
             })
-            .then((error) => {
+            .catch((error) => {
                 return res.status(400).json({ error })
             })
     } catch (error) {
