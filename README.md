@@ -15,7 +15,7 @@ Ce projet est une mise en pratique sur les differentes notions et quelques conce
 ## Bases de donnees
 #### Mongodb
 - Pour enregistrer les informations de nos utilisteurs.
-- Pour creer votre propre base de donnees vous pouvez suivre le lien: https://cloud.mongodb.com
+- Pour creer votre propre base de donnees vous pouvez suivre ce lien et lire la documentation: https://www.mongodb.com
 ## Pour lancer ce projet depuis votre poste local veuillez clonner le projet avec ce lien: https://github.com/abdoulkarim20/back-end-mern-project
 #### Etape a suivre:
 - 1 git clone https://github.com/abdoulkarim20/back-end-mern-project
