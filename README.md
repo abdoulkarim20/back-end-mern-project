@@ -19,10 +19,9 @@ Ce projet est une mise en pratique sur les differentes notions et quelques conce
 #### Etape a suivre:
 - 1 git clone https://github.com/abdoulkarim20/back-end-mern-project
 - 2 Se mettre dans la racine du projet et tapper la commande suivante: npm install 
-- 3 Creer un fichier dans le dossier config en le nommant .env
-- 3.1 Une fois que vous avez creer le fichier .env veuillez mettre ces lignes de codes ci-dessous: 
-- PORT=3000
-- DB_USER_PASSWORD='your database username:your database passord'
-- TOKEN_SECRET= votre phrase de cle secret
+- 3 dans le dossier config renommer le fichier.env.exemple en .env
+- 3.1 Une fois que vous avez renommer le fichier en .env veuillez modifier les lignes de codes ci-dessous: 
+- DB_USER_PASSWORD='your_database_username:your_database_password'
+- TOKEN_SECRET= 'votre_phrase_de_cle_secret'
 
 
