@@ -4,6 +4,7 @@ const ObjectID = require('mongoose').Types.ObjectId;
 module.exports.getAllPost = async (req, res) => {
     try {
         await PostModel.find()
+            .sort({ createdAt: -1 })
             .then((docs) => {
                 return res.status(200).json({ docs });
             }).catch((error) => {
@@ -76,7 +77,7 @@ module.exports.deletePost = async (req, res) => {
     }
 
 }
-module.exports.getDetailPost = async (req, res, next) => {
+module.exports.getDetailPost = async (req, res) => {
     const postId = req.params.id;
     if (!ObjectID.isValid(postId)) {
         return res.status(400).json(`Un poste avec cet identifiant ${postId} n'existe pas`);
@@ -93,4 +94,76 @@ module.exports.getDetailPost = async (req, res, next) => {
         return res.status(500).send(`Error for geting detail post`);
     }
 
+}
+/*Gestion des like et unlike poste*/
+module.exports.likePost = async (req, res) => {
+    const postId = req.params.id;
+    if (!ObjectID.isValid(postId)) {
+        return res.status(400).json(`Un poste avec cet identifiant ${postId} n'existe pas`);
+    }
+    try {
+        await PostModel.findByIdAndUpdate(
+            postId,
+            {
+                $addToSet: { likers: req.body.id }/*l'identifiant de user qui a liker le poste*/
+            },
+            { new: true }
+        ).then((docs) => {
+            return res.status(200).json({ docs })
+        }).catch((error) => {
+            return res.status(400).json({ message: error })
+        })
+    } catch (error) {
+        return res.status(400).json({ message: error })
+    }
+
+}
+module.exports.unlikePost = async (req, res) => {
+    const postId = req.params.id;
+    if (!ObjectID.isValid(postId)) {
+        return res.status(400).json(`Un poste avec cet identifiant ${postId} n'existe pas`);
+    }
+    try {
+        await PostModel.findByIdAndUpdate(
+            postId,
+            {
+                $pull: { likers: req.body.id }/*l'identifiant de user qui a liker le poste*/
+            },
+            { new: true }
+        ).then((docs) => {
+            return res.status(200).json({ docs })
+        }).catch((error) => {
+            return res.status(400).json({ message: error })
+        })
+    } catch (error) {
+        return res.status(400).json({ message: error })
+    }
+
+}
+module.exports.commentPost = async (req, res) => {
+    const postId = req.params.id;
+    if (!ObjectID.isValid(postId)) {
+        return res.status(400).json(`Un poste avec cet identifiant ${postId} n'existe pas`);
+    }
+    try {
+        await PostModel.findByIdAndUpdate(
+            postId,
+            {
+                $push: {
+                    commentaires: {
+                        commentaireId: req.body.commentaireId,
+                        commentairePseudo: req.body.commentairePseudo,
+                        text: req.body.text,
+                        timestamps: new Date().getTime()
+                    }
+                }
+            },
+            { new: true }
+        ).then((docs) => {
+            return res.status(200).json({ docs })
+        }).catch((error) => { return res.status(400).json({ message: error }) })
+
+    } catch (error) {
+        return res.status(400).json({ message: error })
+    }
 }

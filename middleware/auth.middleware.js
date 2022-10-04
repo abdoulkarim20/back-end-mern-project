@@ -38,6 +38,6 @@ module.exports.requiredAuth = (req, res, next) => {
         });
     } else {
         console.log('NO TOKEN');
-        res.status(400).send(`Your token has expired please SignIn with your login and password`);
+        res.status(400).json(`Your token has expired please SignIn with your login and password`);
     }
 }
