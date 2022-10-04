@@ -167,3 +167,35 @@ module.exports.commentPost = async (req, res) => {
         return res.status(400).json({ message: error })
     }
 }
+module.exports.editCommentPost = async (req, res) => {
+    const postId = req.params.id;
+    if (!ObjectID.isValid(postId)) {
+        return res.status(400).json(`Un poste avec cet identifiant ${postId} n'existe pas`);
+    }
+    try {
+        await PostModel.findById(
+            postId
+        ).then((docs) => {
+            const theComment = docs.commentaires.find((commentaire) =>
+                commentaire.id.equals(req.body.commentaireId)
+            );
+            if (!theComment) return res.status(400).json('Commentaire innexistant')
+            else
+                theComment.text = req.body.text
+            return docs.save((error) => {
+                if (!error) return res.status(200).json(docs)
+                return res.status(500).send(error)
+            })
+        }).catch((error) => {
+            return res.status(400).json({ "error 2": error })
+        })
+    } catch (error) {
+        return res.status(400).json({ "error 3": error })
+    }
+}
+module.exports.deletCommentPost = async (req, res) => {
+    const postId = req.params.id;
+    if (!ObjectID.isValid(postId)) {
+        return res.status(400).json(`Un poste avec cet identifiant ${postId} n'existe pas`);
+    }
+}
