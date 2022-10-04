@@ -7,7 +7,8 @@ Ce projet est une mise en pratique sur les differentes notions et quelques conce
 #### body-parser et cookie-parser
 - Pour pour le formatage de nos donnees et en sous format json.
 #### mongoose
-- Pour faire la communication avec notre base de donnees.
+- Le module Mongoose est l’un des modules externes les plus puissants de NodeJS. Mongoose est un MongoDB ODM c’est à dire (Object database Modeling) qui permet de traduire le code et sa représentation de MongoDB vers le serveur Node.js.
+en un mot c'est la correspondance de ORM dans les SGBDR (MySql par exemple)
 #### Securite jsonwebtoken
 - Pour l'intergation de la securite nous avons utiliser le module jsonwebtoken.
 #### bcrypt
