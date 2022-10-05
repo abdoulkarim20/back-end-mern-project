@@ -177,7 +177,7 @@ module.exports.editCommentPost = async (req, res) => {
             postId
         ).then((docs) => {
             const theComment = docs.commentaires.find((commentaire) =>
-                commentaire.id.equals(req.body.commentaireId)
+                commentaire._id.equals(req.body.commentaireId)
             );
             if (!theComment) return res.status(400).json('Commentaire innexistant')
             else
@@ -187,15 +187,33 @@ module.exports.editCommentPost = async (req, res) => {
                 return res.status(500).send(error)
             })
         }).catch((error) => {
-            return res.status(400).json({ "error 2": error })
+            return res.status(400).json({ message: error })
         })
     } catch (error) {
-        return res.status(400).json({ "error 3": error })
+        return res.status(400).json({ message: error })
     }
 }
 module.exports.deletCommentPost = async (req, res) => {
     const postId = req.params.id;
     if (!ObjectID.isValid(postId)) {
         return res.status(400).json(`Un poste avec cet identifiant ${postId} n'existe pas`);
+    }
+    try {
+        await PostModel.findByIdAndUpdate(
+            postId,
+            {
+                $pull: {
+                    commentaires: {
+                        _id: req.body.commentaireId
+                    }
+                }
+            }
+        ).then((docs) => {
+            return res.status(200).json({ "Commentaire supprimer avec succees": docs._id });
+        }).catch((error) => {
+            return res.status(400).json({ message: error })
+        })
+    } catch (error) {
+        return res.status(400).json({ message: error })
     }
 }
