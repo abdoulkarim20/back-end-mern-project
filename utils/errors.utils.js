@@ -24,3 +24,12 @@ module.exports.signInErros = (error) => {
     if (error.message.includes('password')) errors.password = 'Le mot de passe est inccorrect';
     return errors;
 }
+/*Error for uploding file*/
+module.exports.uploadErrrors = (error) => {
+    let errors = { format: "", maxSize: "" }
+    if (error.message.includes('Invalid file'))
+        errors.format = "Le format de l'image est incompatible";
+    if (error.message.includes('max size'))
+        errors.maxSize = "La taille de l'image doit pas depasser 500ko"
+    return errors;
+}
