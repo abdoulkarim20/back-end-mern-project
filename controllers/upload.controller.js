@@ -24,12 +24,12 @@ module.exports.uploadProfile = async (req, res) => {
                 `${__dirname}/../client/public/uploads/profil/${fileName}`
             )
         ).then((docs) => {
-            return res.status(200).json("file saved", docs)
+            return res.status(200).json('file saved')
         }).catch((error) => {
-            return res.status(400).json({ error })
+            return res.status(400).json({ error: error })
         })
 
     } catch (error) {
-        return res.status(400).json({ error })
+        return res.status(400).json({ error: error })
     }
 }
