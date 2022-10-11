@@ -13,6 +13,10 @@ en un mot c'est la correspondance de ORM dans les SGBDR (MySql par exemple)
 - Pour l'intergation de la securite nous avons utiliser le module jsonwebtoken.
 #### bcrypt
 - Pour assurer la securiter des mots de passe de nos utilisateurs nous avons utiliser le module bcrypt pour crypter les mot de passe de nos utilisateurs
+#### multer 
+- Pour la gestion d'upload images
+#### cors 
+- Pour autoriser les endpoits externes a acceder a notre backend
 ## Bases de donnees
 #### Mongodb
 - Pour enregistrer les informations de nos utilisteurs.
