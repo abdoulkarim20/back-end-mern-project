@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const postController = require('../controllers/post.controller');
+const multer = require('multer');
+const uploadFile = multer();
 
 router.get('/', postController.getAllPost);
-router.post('/', postController.createPost);
+router.post('/', uploadFile.single('file'), postController.createPost);
 router.put('/:id', postController.editPost);
 router.delete('/:id', postController.deletePost);
 router.get('/:id', postController.getDetailPost);

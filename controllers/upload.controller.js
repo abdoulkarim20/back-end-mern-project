@@ -23,13 +23,32 @@ module.exports.uploadProfile = async (req, res) => {
             fileSysteme.createWriteStream(
                 `${__dirname}/../client/public/uploads/profil/${fileName}`
             )
-        ).then((docs) => {
-            return res.status(200).json('file saved')
-        }).catch((error) => {
-            return res.status(400).json({ error: error })
-        })
+        )
 
     } catch (error) {
-        return res.status(400).json({ error: error })
+        return res.status(400).json('Error for uploding images')
+    }
+    try {
+        await UserModel.findByIdAndUpdate(
+            req.body.userId,
+            {
+                $set: {
+                    picture: "./upload/profile/" + fileName
+                },
+            },
+            {
+                new: true,
+                upsert: true,
+                setDefaultsOnInsert: true
+            },
+        ).then((docs) => {
+            res.status(200).json('updated sucessfull');
+        })
+            .catch((error) => {
+                res.status(400).json('error updated');
+            })
+
+    } catch (error) {
+        res.status(400).json('error updated');
     }
 }

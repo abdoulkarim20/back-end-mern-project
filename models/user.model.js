@@ -24,6 +24,11 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
       maxlength: 1024,
     },
+    picture: {
+      type: String,
+      minlength: 3,
+      maxlength: 200,
+    },
     biographie: {
       type: String,
       maxlength: 1024,

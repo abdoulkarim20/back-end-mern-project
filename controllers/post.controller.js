@@ -1,5 +1,9 @@
 const PostModel = require('../models/post.model');
 const UserModel = require('../models/user.model');
+const fileSysteme = require('fs');
+const { promisify } = require('util');
+const { uploadErrrors } = require('../utils/errors.utils');
+const pipeline = promisify(require('stream').pipeline);
 const ObjectID = require('mongoose').Types.ObjectId;
 module.exports.getAllPost = async (req, res) => {
     try {
@@ -17,9 +21,43 @@ module.exports.getAllPost = async (req, res) => {
 
 }
 module.exports.createPost = async (req, res) => {
+    /*For uploding image*/
+    let fileName;
+    if (req.file != null) {
+        try {
+            if (req.file.detectedMimeType !== "image/png" &&
+                req.file.detectedMimeType !== "image/jpg" &&
+                req.file.detectedMimeType !== "image/jpeg"
+            )
+                throw Error('Invalid file')
+            if (req.file.size > 500000) throw Error('max size')
+
+        } catch (error) {
+            return res.status(400).json({ error: uploadErrrors(error) })
+        }
+        fileName = req.body.posterId + Date.now() + ".jpg";
+        try {
+            await pipeline(
+                req.file.stream,
+                fileSysteme.createWriteStream(
+                    `${__dirname}/../client/public/uploads/post/${fileName}`
+                )
+            )
+
+        } catch (error) {
+            return res.status(400).json('Error for uploding images')
+        }
+    }
     try {
-        const { posterId, message, video, likers, commentaires } = req.body;
-        const newPost = await PostModel.create({ posterId, message, video, likers, commentaires })
+        const { posterId, message, picture, video, likers, commentaires } = req.body;
+        await PostModel.create({
+            posterId,
+            message,
+            picture: req.file != null ? './uploads/post/' + fileName : '',
+            video,
+            likers,
+            commentaires
+        })
             .then((docs) => {
                 return res.status(200).json({ docs });
             })
